@@ -1,0 +1,7 @@
+/node_modules
+package.json
+package-lock.json
+test.sh
+/base_game/node_modules
+/base_game/.eslintrc.json
+/base_game/tsconfig.json
