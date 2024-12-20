@@ -21,6 +21,13 @@ cd base_game
 ```bash
 npm install
 ``` 
+
+- Si il n'y avait pas le package.json on aurait pu executer le script dans chaque dossier 
+```bash
+chmod u+ script.sh
+../script.sh
+``` 
+
 - Compilez et exécutez le projet
 
 ```bash
