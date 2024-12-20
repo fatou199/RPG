@@ -1,34 +1,92 @@
 
-# TypeScript
+# Projet The Hyrule Castle
 
-[![GitHub Actions CI](https://github.com/microsoft/TypeScript/workflows/CI/badge.svg)](https://github.com/microsoft/TypeScript/actions?query=workflow%3ACI)
-[![npm version](https://badge.fury.io/js/typescript.svg)](https://www.npmjs.com/package/typescript)
-[![Downloads](https://img.shields.io/npm/dm/typescript.svg)](https://www.npmjs.com/package/typescript)
-[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/microsoft/TypeScript/badge)](https://securityscorecards.dev/viewer/?uri=github.com/microsoft/TypeScript)
+## Prérequis
+* Node.js (version >= 14.x)
+* NPM (généralement installé avec Node.js)
 
+## Installation
+Pour démarrer ce projet, suivez les étapes ci-dessous :
 
-[TypeScript](https://www.typescriptlang.org/) is a language for application-scale JavaScript. TypeScript adds optional types to JavaScript that support tools for large-scale JavaScript applications for any browser, for any host, on any OS. TypeScript compiles to readable, standards-based JavaScript. Try it out at the [playground](https://www.typescriptlang.org/play/), and stay up to date via [our blog](https://blogs.msdn.microsoft.com/typescript) and [Twitter account](https://twitter.com/typescript).
-
-Find others who are using TypeScript at [our community page](https://www.typescriptlang.org/community/).
-
-## Installing
-
-For the latest stable version:
+- Clonez le dépôt
+Clonez ce projet sur votre machine locale :
 
 ```bash
-npm install -D typescript
-```
+git clone <URL_du_dépôt>
+cd base_game
+``` 
 
-# RPG
-Le jeu est un RPG au tour par tour. Vous incarnez un personnage qui défie le Château d'Hyrule, une tour composée de 10 étages. A chaque étage vous rencontrez un ennemi et au dernier étage, vous défiez le Boss.
-Pour l'instant, votre personnage sera Link. Il possède 60 points de vie (PV) maximum et 15 de force (FOR).
-A chaque combat vous affronterez un Bokoblin qui possède 30 PV et 5 FOR.
-Pour le boss du 10ème étage, vous devrez vaincre "Ganon" qui aura 150 PV et 20 FOR.
-Pendant chaque combat, vous avez le choix entre "Attaquer" et "Soigner" :
+- Installez les dépendances
 
-"Attaquer" inflige des dégâts à l'adversaire égaux à la statistique FOR du personnage
-"Soigner" soignera le personnage de la moitié de ses PV maximum
-Après le tour de votre personnage, l'adversaire attaque et inflige des dégâts égaux à sa FOR.
-Lorsque les PV de l'adversaire tombent à 0, il est vaincu et le personnage monte d'un étage supplémentaire.
-Lorsque les PV du personnage tombent à 0, il meurt et le jeu s'arrête.
-Si le boss est vaincu, le jeu s'arrête avec un message de félicitations.
+```bash
+npm install
+``` 
+- Compilez et exécutez le projet
+
+```bash
+basegame: tsc main.ts && node main.js
+modgame: tsc more_statistics.ts && node more_statistics.js
+``` 
+
+
+## Objectifs
+
+Dans ce projet, vous allez :
+
+- Appliquer les concepts de base de TypeScript à travers le développement d'un jeu.
+- Traiter des problématiques liées aux mécaniques de jeu.
+- Gérer l'entrée de l'utilisateur et le traitement des erreurs.
+- Améliorer vos compétences en programmation en créant un script.
+- Créer des mécaniques de jeu autour de fonctions algorithmiques et mathématiques.
+
+## Instructions
+
+Au cours de ce projet, vous développerez un petit jeu RPG avec des mécaniques personnalisables. Vous commencerez par un jeu de base, puis ajouterez des *mods* pour enrichir le gameplay.
+
+### Structure du projet
+
+1. **Jeu de base** : Développez la structure principale du jeu.
+2. **Mods** : Ajoutez des *mods* à partir d'une liste prédéfinie, chacun apportant de nouvelles fonctionnalités ou mécaniques de jeu.
+3. **Organisation des fichiers** :
+   - Le jeu de base doit être placé dans le dossier `base_game/` pour la soumission et la correction.
+   - Pour les versions modifiées, utilisez un dossier `mods/` avec un fichier par mod.
+
+## Étape 1 : Jeu de base
+
+Avant d'ajouter des *mods*, assurez-vous que le jeu de base fonctionne correctement. Il s'agira d'un jeu RPG au tour par tour dans lequel le joueur (Link) devra gravir une tour de 10 étages, en affrontant des ennemis à chaque étage, avec un combat final contre un boss à l'étage 10.
+
+### Mécaniques de jeu de base :
+
+- **Caractéristiques du personnage** :
+  - Link : 60 HP, 15 STR.
+  - Bokoblin : 30 HP, 5 STR.
+  - Ganon (Boss à l'étage 10) : 150 HP, 20 STR.
+
+- **Options de combat** :
+  - **Attaquer** : Inflige des dégâts égaux à la caractéristique STR du joueur.
+  - **Soigner** : Restaure la moitié des points de vie max du joueur.
+  - Après le tour du joueur, l'ennemi attaque avec des dégâts égaux à sa propre caractéristique STR.
+
+- **Déroulement du jeu** :
+  - Vous combattez des ennemis à chaque étage.
+  - Si les HP de l'ennemi tombent à 0, il est vaincu et vous passez à l'étage suivant.
+  - Si vos HP tombent à 0, le jeu s'arrête.
+  - Lorsque Ganon est vaincu, le jeu s'arrête avec un message de félicitations.
+
+---
+
+## Étape 2 : Personnages dynamiques
+
+Pour ajouter une sélection dynamique des personnages, vous allez récupérer les données du joueur, des ennemis et du boss à partir des fichiers JSON suivants :
+
+- `players.json` : Récupère les données du personnage joueur.
+- `enemies.json` : Récupère les données des ennemis.
+- `bosses.json` : Récupère les données du boss.
+
+Les personnages (joueur, ennemis et boss) seront sélectionnés de manière aléatoire, en utilisant la rareté comme vecteur de probabilité. Cela rendra chaque session de jeu unique.
+
+---
+
+## Étape 3 : Mod - Plus de Statistiques
+
+Une fois le jeu de base terminé, vous ajouterez un *mod* pour enrichir les statistiques du personnage. Ce *mod* ajoutera des statistiques supplémentaires telles que la défense, la vitesse, ou d'autres caractéristiques selon vos choix.
